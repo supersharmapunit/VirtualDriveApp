@@ -284,6 +284,90 @@
         divAppBody.appendChild(divNotepadBody);
 
         divAppTitle.innerHTML = fname;
+
+        let spanSave = divAppMenuBar.querySelector("[action=save]");
+        let spanBold = divAppMenuBar.querySelector("[action=bold]");
+        let spanItalic = divAppMenuBar.querySelector("[action=italic]");
+        let spanUnderline = divAppMenuBar.querySelector("[action=underline]");
+        let inputBGColor = divAppMenuBar.querySelector("[action=bg-color]");
+        let inputTextColor = divAppMenuBar.querySelector("[action=fg-color]");
+        let selectFontFamily = divAppMenuBar.querySelector("[action=font-family]");
+        let selectFontSize = divAppMenuBar.querySelector("[action=font-size]");
+
+        spanSave.addEventListener("click", saveNotepad);
+        spanBold.addEventListener("click", makeNotepadBold);
+        spanItalic.addEventListener("click", makeNotepadItalic);
+        spanUnderline.addEventListener("click", makeNotepadUnderline);
+        inputBGColor.addEventListener("change", changeNotepadBGColor);
+        inputTextColor.addEventListener("change", changeNotepadTextColor);
+        selectFontFamily.addEventListener("change", changeNotepadFontFamily);
+        selectFontSize.addEventListener("change", changeNotepadFontSize);
+    }
+
+    function saveNotepad() {
+    }
+
+    function makeNotepadBold() {
+        let textArea = divAppBody.querySelector("textArea");
+        let isPressed = this.getAttribute("pressed") == "true";
+
+        if(!isPressed){
+            this.setAttribute("pressed", true);
+            textArea.style.fontWeight = "bold";
+        } else {
+            this.setAttribute("pressed", false);
+            textArea.style.fontWeight = "normal";
+        }
+    }
+
+    function makeNotepadItalic() {
+        let textArea = divAppBody.querySelector("textArea");
+        let isPressed = this.getAttribute("pressed") == "true";
+
+        if(!isPressed){
+            this.setAttribute("pressed", true);
+            textArea.style.fontStyle = "italic";
+        } else {
+            this.setAttribute("pressed", false);
+            textArea.style.fontStyle = "normal";
+        }
+    }
+
+    function makeNotepadUnderline() {
+        let textArea = divAppBody.querySelector("textArea");
+        let isPressed = this.getAttribute("pressed") == "true";
+
+        if(!isPressed){
+            this.setAttribute("pressed", true);
+            textArea.style.textDecoration = "underline";
+        } else {
+            this.setAttribute("pressed", false);
+            textArea.style.textDecoration = "none";
+        }
+    }
+
+    function changeNotepadBGColor() {
+        let color = this.value;
+        let textArea = divAppBody.querySelector("textArea");
+        textArea.style.backgroundColor = color;
+    }
+
+    function changeNotepadTextColor() {
+        let color = this.value;
+        let textArea = divAppBody.querySelector("textArea");
+        textArea.style.color = color;
+    }
+
+    function changeNotepadFontFamily() {
+        let fontFamily = this.value;
+        let textArea = divAppBody.querySelector("textArea");
+        textArea.style.fontFamily = fontFamily;
+    }
+
+    function changeNotepadFontSize() {
+        let fontSize = this.value;
+        let textArea = divAppBody.querySelector("textArea");
+        textArea.style.fontSize = fontSize;
     }
 
     function addFolderHTML(rname, rid, pid) {
